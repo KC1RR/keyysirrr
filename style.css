@@ -1,0 +1,251 @@
+/* =========================
+   BASE RESET
+========================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: #000;
+  color: white;
+  overflow: hidden;
+  position: relative;
+  height: 100vh;
+}
+/* =========================
+   🔴 NEON BACKGROUND (FIXED + STRONG VISIBILITY)
+========================= */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+
+  background:
+    radial-gradient(circle at 20% 30%, rgba(255, 0, 0, 0.45), transparent 40%),
+    radial-gradient(circle at 80% 20%, rgba(255, 0, 0, 0.30), transparent 45%),
+    radial-gradient(circle at 40% 80%, rgba(255, 0, 0, 0.25), transparent 50%),
+    radial-gradient(circle at 70% 70%, rgba(255, 60, 60, 0.20), transparent 55%);
+
+  animation: neonMove 8s ease-in-out infinite;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: -20%;
+  z-index: -3;
+  pointer-events: none;
+
+  background:
+    radial-gradient(circle, rgba(255,0,0,0.18), transparent 60%),
+    radial-gradient(circle at 60% 40%, rgba(255,50,50,0.12), transparent 55%);
+
+  filter: blur(50px);
+  animation: neonMove2 12s ease-in-out infinite;
+}
+
+/* =========================
+   NEON ANIMATION
+========================= */
+@keyframes neonMove {
+  0%, 100% { transform: translate(0,0) scale(1); }
+  50% { transform: translate(25px,-20px) scale(1.08); }
+}
+
+@keyframes neonMove2 {
+  0%, 100% { transform: translate(0,0) scale(1); }
+  50% { transform: translate(-35px,25px) scale(1.15); }
+}
+
+/* =========================
+   HERO
+========================= */
+.hero {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+/* =========================
+   TEXT EFFECTS
+========================= */
+.glow {
+  font-size: 4rem;
+  text-shadow:
+    0 0 10px #ff0000,
+    0 0 20px #ff0000,
+    0 0 40px #ff0000;
+  animation: float 3s ease-in-out infinite;
+}
+
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 2s forwards;
+}
+
+/* =========================
+   BUTTON
+========================= */
+.btn {
+  margin-top: 20px;
+  padding: 10px 20px;
+  border: none;
+  background: #fff;
+  color: black;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 20px #ff0000;
+}
+
+/* =========================
+   SOCIAL BUTTONS
+========================= */
+.social-rectangles {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.social-row {
+  display: flex;
+  gap: 15px;
+}
+
+.social-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  background: #111;
+  border: 1px solid #333;
+  border-radius: 10px;
+  text-decoration: none;
+  color: white;
+  transition: 0.3s;
+}
+
+.social-btn img {
+  width: 22px;
+  height: 22px;
+  filter: invert(1);
+}
+
+.social-btn:hover {
+  transform: scale(1.05);
+  border-color: #ff0000;
+}
+
+/* STRAVA SPECIAL */
+.strava {
+  transform: scale(1.15);
+  background: rgba(252, 76, 2, 0.15);
+  border: 1px solid #fc4c02;
+}
+
+/* =========================
+   CARDS
+========================= */
+.cards {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 50px;
+  position: relative;
+  z-index: 1;
+}
+
+.card {
+  width: 150px;
+  height: 150px;
+  background: #111;
+  border: 1px solid #ff0000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.4s;
+}
+
+.card:hover {
+  transform: translateY(-10px) rotate(2deg);
+  box-shadow: 0 0 25px #ff0000;
+}
+
+/* =========================
+   ANIMATIONS
+========================= */
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+/* =========================
+   APP STRIP
+========================= */
+.app-strip {
+  position: fixed;
+  bottom: 10px;
+  width: 100%;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(12px);
+  border-top: 1px solid #111;
+  padding: 12px 0;
+  z-index: 2;
+}
+
+.app-track {
+  display: flex;
+  width: max-content;
+  animation: scroll 18s linear infinite;
+}
+
+.set {
+  display: flex;
+  gap: 80px;
+  padding-right: 80px;
+}
+
+.app-track img {
+  width: 28px;
+  height: 28px;
+  filter: invert(1);
+  transition: 0.3s;
+}
+
+.app-track img:hover {
+  transform: scale(1.4);
+  filter: drop-shadow(0 0 10px #ff0000);
+}
+
+/* =========================
+   CONTINUOUS SCROLL
+========================= */
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
